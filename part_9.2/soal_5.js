@@ -10,7 +10,12 @@ function ubahHuruf(kata) {
     let kata_baru = '';
     
     for (let idx = 0; idx < huruf.length; idx++) {
-        const index_huruf_pengganti = alfabet.indexOf(huruf[idx]) + 1;
+        let index_huruf_pengganti = alfabet.indexOf(huruf[idx]) + 1;
+
+        if(index_huruf_pengganti >= alfabet.length){
+            index_huruf_pengganti = 0;
+        }
+
         huruf[idx] = alfabet[index_huruf_pengganti];
         kata_baru += huruf[idx];
     }
