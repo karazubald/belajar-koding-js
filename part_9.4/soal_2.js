@@ -19,54 +19,54 @@ function urutkanAbjad(str) {
     const last_idx = len - 1;
     let curr_size = 1;
     while (curr_size < last_idx) {
-        let left_start = 0;
+        let ujung_kiri = 0;
 
-        while (left_start < last_idx) {
-            let mid = Math.min(left_start + curr_size - 1, last_idx);
-            let right_end = Math.min(left_start + 2 * curr_size - 1, last_idx);
-            // Determining size for left and right array
-            let left_arr_size = mid - left_start + 1;
-            let right_arr_size = right_end - mid;
-            // Create left and right temporary array
-            let left_arr = Array(left_arr_size).fill(0);
-            let right_arr = Array(right_arr_size).fill(0);
-            // Copy data to temporary arrays
-            for (let i = 0; i < left_arr_size; i++) {
-                left_arr[i] = arr_huruf[left_start + i];
+        while (ujung_kiri < last_idx) {
+            let tengah = Math.min(ujung_kiri + curr_size - 1, last_idx);
+            let ujung_kanan = Math.min(ujung_kiri + 2 * curr_size - 1, last_idx);
+            // Menentukan array kiri dan kanan
+            let array_kiri_size = tengah - ujung_kiri + 1;
+            let array_kanan_size = ujung_kanan - tengah;
+            // Membuat array kiri dan kanan
+            let array_kiri = Array(array_kiri_size).fill(0);
+            let array_kanan = Array(array_kanan_size).fill(0);
+            // Menyalin data ke array kiri dan kanan
+            for (let i = 0; i < array_kiri_size; i++) {
+                array_kiri[i] = arr_huruf[ujung_kiri + i];
             }
-            for (let j = 0; j < right_arr_size; j++) {
-                right_arr[j] = arr_huruf[mid + 1 + j];
+            for (let j = 0; j < array_kanan_size; j++) {
+                array_kanan[j] = arr_huruf[tengah + 1 + j];
             }
-            // Merge temporary arrays back to arr_huruf
+            // Melakukan merge array
             let a = 0;
             let b = 0;
-            let c = left_start;
-            while (a < left_arr_size && b < right_arr_size) {
-                if (left_arr[a] <= right_arr[b]) {
-                    arr_huruf[c] = left_arr[a];
+            let c = ujung_kiri;
+            while (a < array_kiri_size && b < array_kanan_size) {
+                if (array_kiri[a] <= array_kanan[b]) {
+                    arr_huruf[c] = array_kiri[a];
                     a++;
                 }
                 else
                 {
-                    arr_huruf[c] = right_arr[b];
+                    arr_huruf[c] = array_kanan[b];
                     b++;
                 }
                 c++;
             }
-            // Copy the remaining elements of left_arr if there are any, back to arr_huruf
-            while (a < left_arr_size) {
-                arr_huruf[c] = left_arr[a];
+            // Menyalin elemen array kiri ke arr_huruf
+            while (a < array_kiri_size) {
+                arr_huruf[c] = array_kiri[a];
                 a++;
                 c++;
             }
-            // Copy the remaining elements of right_arr if there are any, back to arr_huruf
-            while (a < left_arr_size) {
-                arr_huruf[c] = left_arr[b];
+            // Menyalin elemen array kanan ke arr_huruf
+            while (a < array_kiri_size) {
+                arr_huruf[c] = array_kanan[b];
                 b++;
                 c++;
             }
             
-            left_start += 2 * curr_size;
+            ujung_kiri += 2 * curr_size;
         }
         curr_size = 2 * curr_size;
     }
