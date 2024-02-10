@@ -33,7 +33,7 @@ function shoppingTime(memberId, money) {
         ['Casing Handphone', 50000]
     ];
 
-    if (id.length == 0) {
+    if (!memberId) {
         str_out = "Mohon maaf, toko X hanya berlaku untuk member saja";
         return str_out;
     }
@@ -42,20 +42,24 @@ function shoppingTime(memberId, money) {
         return str_out;
     }
 
-    str_out += `{ memberId: '${id}',\n money: ${uang},\n listPurchased: \n`;
-    str_out += `[ `;
+    let pList = [];
     for (let i = 0; i < store_items.length; i++) {
         const aitem = store_items[i][0];
         const harga = store_items[i][1];
         if(uang >= harga){
             uangKembalian = uang - harga;
             uang -= harga;
-            str_out += `'${aitem}',\n`;
+            pList.push(aitem);
         }
     }
-    str_out += `], \n changeMoney: ${uangKembalian} }`;
-    str_out = str_out.replaceAll(",\n]"," ]");
-    str_out += `\n`;
+
+    str_out = {
+        memberId: id,
+        money: money,
+        listPurchased: pList,
+        changeMoney: uangKembalian
+    }
+
     return str_out;
 }
 
@@ -78,4 +82,4 @@ console.log(shoppingTime('82Ku8Ma742', 170000));
 // changeMoney: 120000 }
 console.log(shoppingTime('', 2475000)); //Mohon maaf, toko X hanya berlaku untuk member saja
 console.log(shoppingTime('234JdhweRxa53', 15000)); //Mohon maaf, uang tidak cukup
-console.log(shoppingTime()); ////Mohon maaf, toko X hanya berlaku untuk member saja
+console.log(shoppingTime()); //Mohon maaf, toko X hanya berlaku untuk member saja

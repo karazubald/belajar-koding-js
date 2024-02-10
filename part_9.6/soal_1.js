@@ -1,15 +1,18 @@
 function changeMe(arr) {
     const ref_year = 2023;
-    let str = '';
+    let referer = [];
+    let obj_arr = [];
     for (let index = 0; index < arr.length; index++) {
         const element = arr[index];
-        str += `${element[0]} ${element[1]}: `;
-        str += `{ firstName: '${element[0]}',\n`;
-        str += ` lastName: '${element[1]}',\n`;
-        str += ` gender: '${element[2]}',\n`; 
-        str += ` age: ${isNaN(element[3]) ? `'Invalid Birth Year'` : `${ref_year - element[3]}`} }\n`;
+        obj_arr = {
+            firstName: element[0],
+            lastName: element[1],
+            gender: element[2],
+            age: (isNaN(element[3]) ? 'Invalid Birth Year' : ref_year-element[3])
+        }
+        referer[`${element[0]} ${element[1]}`] = obj_arr;
     }
-    console.log(str);
+    console.log(referer);
 }
 
   // TEST CASES
