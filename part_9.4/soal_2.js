@@ -17,6 +17,8 @@ function urutkanAbjad(str) {
     // Merge sort algorithm (bottom up approach, iterative)
 
     const last_idx = len - 1;
+    // curr_size = ukuran subarray yang akan di-merge
+    // curr_size bervariasi dari 1 hingga n/2
     let curr_size = 1;
     while (curr_size < last_idx) {
         let ujung_kiri = 0;
@@ -37,7 +39,7 @@ function urutkanAbjad(str) {
             for (let j = 0; j < array_kanan_size; j++) {
                 array_kanan[j] = arr_huruf[tengah + 1 + j];
             }
-            // Melakukan merge array
+            // Melakukan merge array kiri/kanan ke arr_huruf
             let a = 0;
             let b = 0;
             let c = ujung_kiri;
