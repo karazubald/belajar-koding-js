@@ -22,31 +22,19 @@ function graduates(students) {
     // Code disini
     let papan_pengumuman = [];
     let skorLulus = 75;
-    let grupKelas = [];
 
-    // Pengelompokan kelas menjadi grupKelas
-    for (let x = 0; x < students.length; x++) {
-        grupKelas.push(students[x].class);
-        grupKelas = grupKelas.filter((value, index) => grupKelas.indexOf(value) === index);
-    }
-
-    // Iterasi kelas di grupKelas
-    for (let n = 0; n < grupKelas.length; n++) {
-        const kelas = grupKelas[n];
-        const data_skor = [];
-        // Cek setiap murid
-        for (let p = 0; p < students.length; p++){
-            const murid = students[p];
-            // Cek murid di kelas n dan cek skornya apakah minimal ada di skorLulus (skor >= 75)
-            if (murid.class == kelas && murid.score >= skorLulus){
-                // Simpan di data_skor apabila bernilai true
-                data_skor.push({name: murid.name, score: murid.score});
-            }
-            
+    for (let m = 0; m < students.length; m++) {
+        const murid = students[m];
+        let kelas = students[m].class;
+        if(!papan_pengumuman[kelas]){
+            papan_pengumuman[kelas] = [];
         }
-
-        // Simpan data_skor di papan_pengumuman berdasarkan kelasnya
-        papan_pengumuman[`${kelas}`] = data_skor;
+        if(murid.score >= 75) {
+                papan_pengumuman[kelas].push({
+                    name: murid.name,
+                    score: murid.score
+                })
+            }
     }
     return papan_pengumuman;
 }

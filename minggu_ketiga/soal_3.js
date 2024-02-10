@@ -1,55 +1,17 @@
 function highestScore(students) {
     // Code disini
     let papan_peringkat = [];
-    let skorTertinggi = 0;
-    let peraihSkor = '';
-    let grupKelas = [];
-
-    // Pengelompokan kelas menjadi grupKelas
-    for (let x = 0; x < students.length; x++) {
-        grupKelas.push(students[x].class);
-        grupKelas = grupKelas.filter((value, index) => grupKelas.indexOf(value) === index);
-    }
-
-    // Iterasi kelas di grupKelas
-    for (let n = 0; n < grupKelas.length; n++) {
-        const kelas = grupKelas[n];
-
-        // Cek murid 1
-        for (let st = 0; st < students.length; st++) {
-            const murid1 = students[st];
-            // Hanya cek murid di kelas (grupKelas ke-n)
-            if (murid1.class === kelas) {
-                // Tetapkan nama dan skor murid1 menjadi nama dan skor tertinggi sebelum cek murid2
-                peraihSkor = murid1.name;
-                skorTertinggi = murid1.score;
-
-                // Cek murid 2
-                for (let i = 0; i < students.length; i++) {
-                    if (i === st) continue; // murid 2 tidak boleh sama dengan murid 1
-                    const murid2 = students[i];
-                    // Jika murid2 juga di kelas murid1
-                    if (murid2.class === murid1.class){
-                        // Ganti nama dan skorTertinggi jika skor murid2 lebih tinggi
-                        if (murid2.score > murid1.score) {
-                            peraihSkor = murid2.name;
-                            skorTertinggi = murid2.score;
-                        }
-                    }
-                }
-            }
+    
+    for (let m = 0; m < students.length; m++){
+        let murid = students[m];
+        let kelas = murid.class;
+        if(!papan_peringkat[kelas]) {
+            papan_peringkat[kelas] = {
+                name: murid.name,
+                score: murid.score
+            };
         }
-
-        // Simpan nama murid dan skorTertinggi di data_skor
-        let data_skor = {
-            name: peraihSkor,
-            score: skorTertinggi
-        }
-
-        // Simpan data_skor di papan_peringkat berdasarkan kelasnya
-        papan_peringkat[`${kelas}`] = data_skor;
     }
-
     return papan_peringkat;
 }
 
