@@ -11,6 +11,19 @@ function highestScore(students) {
                 score: murid.score
             };
         }
+        if(murid.score > papan_peringkat[kelas].score){
+            papan_peringkat[kelas] = {
+                name: murid.name,
+                score: murid.score
+            };
+        }
+        // if(!papan_peringkat[kelas]) {
+        //     papan_peringkat[kelas] = [];
+        //     papan_peringkat[kelas] = {
+        //         name: murid.name,
+        //         score: murid.score
+        //     };
+        // }
     }
     return papan_peringkat;
 }
