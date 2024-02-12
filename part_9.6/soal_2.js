@@ -20,7 +20,6 @@ maka output:
 { memberId: '324193hDew2', money: 700000, listPurchased: [ 'Baju Zoro', 'Sweater Uniklooh' ], changeMoney: 25000 }
 */
 function shoppingTime(memberId, money) {
-    // you can only write your code here!
     let id = String(memberId);
     let uang = money;
     let uangKembalian = 0;

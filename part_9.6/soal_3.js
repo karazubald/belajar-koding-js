@@ -17,7 +17,6 @@ function countProfit(shoppers) {
         ['Sweater Uniklooh', 175000, 1]
     ];
 
-    // you can only write your code here!
     let transcation = [];
     let para_pembeli = [];
     let sisaBarang = 0;
